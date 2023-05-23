@@ -39,21 +39,21 @@ public class StudentController {
     }
 
     @GetMapping("/get-student-by-name/{name}")
-    public ResponseEntity<Student> getStudentByName(@PathVariable String name){
+    public ResponseEntity<Student> getStudentByName(@PathVariable("name") String name){
         Student student = null; // Assign student by calling service layer method
         student=studentService.getStudentFromRepo(name);
         return new ResponseEntity<>(student, HttpStatus.CREATED);
     }
 
     @GetMapping("/get-teacher-by-name/{name}")
-    public ResponseEntity<Teacher> getTeacherByName(@PathVariable String name){
+    public ResponseEntity<Teacher> getTeacherByName(@PathVariable("name") String name){
         Teacher teacher = null; // Assign student by calling service layer method
         teacher=studentService.getTeacherFromRepo(name);
         return new ResponseEntity<>(teacher, HttpStatus.CREATED);
     }
 
     @GetMapping("/get-students-by-teacher-name/{teacher}")
-    public ResponseEntity<List<String>> getStudentsByTeacherName(@PathVariable String teacher){
+    public ResponseEntity<List<String>> getStudentsByTeacherName(@PathVariable("teacher") String teacher){
         List<String> students = null; // Assign list of student by calling service layer method
         students=studentService.studentUnderTeacher(teacher);
         return new ResponseEntity<>(students, HttpStatus.CREATED);
